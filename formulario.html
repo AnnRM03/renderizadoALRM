@@ -109,9 +109,9 @@
     </div>
 
     <script type="module">
-        import { exportaAHtml } from "./lib/js/exportaAHtml.js";
-        import { muestraError } from "./lib/js/muestraError.js";
-        import { submitForm } from "./lib/js/submitForm.js";
+        import { exportaAHtml } from "../lib/js/exportaAHtml.js";
+        import { muestraError } from "../lib/js/muestraError.js";
+        import { submitForm } from "../lib/js/submitForm.js";
 
         /**
          * @param {Event} event
@@ -119,7 +119,7 @@
         async function procesaForm(event) {
             event.preventDefault(); // Prevenir el envío estándar del formulario
             try {
-                const respuesta = await submitForm("./srv/procesa.php", event);
+                const respuesta = await submitForm("../srv/procesa.php", event);
                 alert(respuesta.body);
             } catch (error) {
                 muestraError(error);

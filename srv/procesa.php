@@ -1,7 +1,7 @@
 <?php
 
-require_once __DIR__ . "/../lib/php/recuperaTexto.php";
-require_once __DIR__ . "/../lib/php/devuelveJson.php";
+require_once __DIR__ . "../lib/php/recuperaTexto.php";
+require_once __DIR__ . "../lib/php/devuelveJson.php";
 
 $genero = recuperaTexto("genero");
 

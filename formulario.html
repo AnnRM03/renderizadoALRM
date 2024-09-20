@@ -88,7 +88,7 @@
 
 <body>
     <div class="container">
-        <a href="inicio.html" class="btn">Volver</a>
+        <a href="index.html" class="btn">Volver</a>
         <h1>Formulario de recomendación</h1>
 
         <form onsubmit="procesaForm(event)">
@@ -119,7 +119,7 @@
         async function procesaForm(event) {
             event.preventDefault(); // Prevenir el envío estándar del formulario
             try {
-                const respuesta = await submitForm("srv/procesa.php", event);
+                const respuesta = await submitForm("./srv/procesa.php", event);
                 alert(respuesta.body);
             } catch (error) {
                 muestraError(error);

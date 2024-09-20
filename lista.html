@@ -96,7 +96,7 @@
 </head>
 
 <body onload="descargaDatos()">
-    <a href="inicio.html" class="btn">Volver</a>
+    <a href="index.html" class="btn">Volver</a>
 
     <h1>Lista de definiciones</h1>
 
@@ -129,7 +129,7 @@
 
         async function descargaDatos() {
             try {
-                const respuesta = await consumeJson("srv/datos.php");
+                const respuesta = await consumeJson("./srv/datos.php");
 
                 // Muestra las definiciones en el HTML
                 document.getElementById('pop').textContent = respuesta.body.pop;

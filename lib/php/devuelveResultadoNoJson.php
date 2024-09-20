@@ -1,6 +1,6 @@
 <?php
 
-require_once _DIR_ . "/INTERNAL_SERVER_ERROR.php";
+require_once __DIR__ . "/INTERNAL_SERVER_ERROR.php";
 
 // Asegúrate de que INTERNAL_SERVER_ERROR esté definido
 if (!defined('INTERNAL_SERVER_ERROR')) {

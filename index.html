@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Formulario de recomendación</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #755465;
+            color: #4e3442;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            background-color: #cdb0ac;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+            max-width: 500px;
+            width: 100%;
+        }
+
+        h1 {
+            text-align: center;
+            color: #4e3442;
+            margin-bottom: 20px;
+            font-size: 24px;
+        }
+
+        label {
+            font-size: 16px;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        select {
+            width: 100%;
+            padding: 10px;
+            margin-top: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #1e7387;
+            color: #042229;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 20px;
+            width: 100%;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #1d5663;
+        }
+
+        a.btn {
+            text-decoration: none;
+            padding: 10px 20px;
+            color: #042229;
+            background-color: #1e7387;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            display: inline-block;
+            transition: background-color 0.3s;
+        }
+
+        a.btn:hover {
+            background-color: #1d5663;
+        }
+
+        p {
+            margin: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <a href="inicio.html" class="btn">Volver</a>
+        <h1>Formulario de recomendación</h1>
+
+        <form onsubmit="procesaForm(event)">
+            <label>
+                Recomendación de artistas
+                <select name="genero" required>
+                    <option value="">Sin selección</option>
+                    <option value="pop">Pop</option>
+                    <option value="rock">Rock</option>
+                    <option value="mi">Música independiente</option>
+                    <option value="rb">Rhythm & Blues</option>
+                    <option value="banda">Banda</option>
+                </select>
+            </label>
+
+            <button type="submit">Procesar</button>
+        </form>
+    </div>
+
+    <script type="module">
+        import { exportaAHtml } from "./lib/js/exportaAHtml.js";
+        import { muestraError } from "./lib/js/muestraError.js";
+        import { submitForm } from "./lib/js/submitForm.js";
+
+        /**
+         * @param {Event} event
+         */
+        async function procesaForm(event) {
+            event.preventDefault(); // Prevenir el envío estándar del formulario
+            try {
+                const respuesta = await submitForm("srv/procesa.php", event);
+                alert(respuesta.body);
+            } catch (error) {
+                muestraError(error);
+            }
+        }
+
+        exportaAHtml(procesaForm);
+    </script>
+</body>
+
+</html>

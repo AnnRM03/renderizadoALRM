@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de definiciones</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #755465;
+            color: #755465;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            color: #311c27;
+        }
+
+        dl {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: #cdb0ac;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h3 {
+            font-size: 1.5em;
+            color: #311c27;
+            margin-bottom: 5px;
+        }
+
+        dd {
+            font-size: 1.2em;
+            margin-left: 20px;
+            color: #755465;
+            text-align: justify;
+        }
+
+        a.btn {
+            display: inline-block;
+            padding: 10px 20px;
+            margin: 20px 0;
+            text-decoration: none;
+            background-color: #1e7387;
+            color: #042229;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        a.btn:hover {
+            background-color: #1d5663;
+        }
+
+        .img-artist {
+            display: block;
+            max-width: 80%;
+            height: auto;
+            margin: 10px auto;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        dl h3 {
+            margin-top: 20px;
+        }
+
+        @media (max-width: 600px) {
+            body {
+                padding: 10px;
+            }
+
+            dl {
+                padding: 15px;
+            }
+
+            h1 {
+                font-size: 2em;
+            }
+
+            h3 {
+                font-size: 1.3em;
+            }
+
+            dd {
+                font-size: 1em;
+            }
+        }
+    </style>
+</head>
+
+<body onload="descargaDatos()">
+    <a href="inicio.html" class="btn">Volver</a>
+
+    <h1>Lista de definiciones</h1>
+
+    <dl>
+        <h3>Pop</h3>
+        <dd id="pop">...</dd>
+        <img class="img-artist" src="https://kioscodelahistoria.com/wp-content/uploads/2023/10/Michael-Jackson-1024x529.jpg">
+        
+        <h3>Rock</h3>
+        <dd id="rock">...</dd>
+        <img class="img-artist" src="https://www.binaural.es/wp-content/uploads/2021/08/arc1.jpg">
+        
+        <h3>Música independiente</h3>
+        <dd id="mi">...</dd>
+        <img class="img-artist" src="https://secretfangirls.com/wp-content/uploads/2017/01/16387931_722459221262505_4352724062642244753_n3.jpg">
+        
+        <h3>Rhythm & Blues</h3>
+        <dd id="rb">...</dd>
+        <img class="img-artist" src="https://media.revistagq.com/photos/63b2a333cf946a6d514db968/16:9/w_2560%2Cc_limit/blinding-lights-the-weeknd-spotify.jpeg">
+        
+        <h3>Banda</h3>
+        <dd id="banda">...</dd>
+        <img class="img-artist" src="https://www.elsoldemexico.com.mx/gossip/mznaw2-julionalvarez/ALTERNATES/LANDSCAPE_1140/julionalvarez">
+    </dl>
+
+    <script type="module">
+        import { exportaAHtml } from "./lib/js/exportaAHtml.js";
+        import { consumeJson } from "./lib/js/consumeJson.js";
+        import { muestraError } from "./lib/js/muestraError.js";
+
+        async function descargaDatos() {
+            try {
+                const respuesta = await consumeJson("srv/datos.php");
+
+                // Muestra las definiciones en el HTML
+                document.getElementById('pop').textContent = respuesta.body.pop;
+                document.getElementById('rock').textContent = respuesta.body.rock;
+                document.getElementById('mi').textContent = respuesta.body.mi;
+                document.getElementById('rb').textContent = respuesta.body.rb;
+                document.getElementById('banda').textContent = respuesta.body.banda;
+
+            } catch (error) {
+                muestraError(error);
+            }
+        }
+        exportaAHtml(descargaDatos);
+    </script>
+</body>
+
+</html>
